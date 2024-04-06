@@ -1,0 +1,1 @@
+# Simple rpg game made with Godot for learning purposes
