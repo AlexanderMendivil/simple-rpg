@@ -2,24 +2,28 @@ extends CharacterBody3D
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var spell = preload("res://spells/fire_ball.tscn").instantiate()
+@onready var spell = preload("res://spells/fire_ball.tscn")
 
 @export var camera: Camera3D
+@export var fall_multiplier: float = 2.0
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-
+var mouse_motion := Vector2.ZERO
 
 func _physics_process(delta):
-	# Add the gravity.
+	handle_camera_rotation()
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		if velocity.y >= 0:
+			velocity.y -= gravity * delta
+		else:
+			velocity.y -= gravity * delta * fall_multiplier
 
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -36,6 +40,16 @@ func _input(event):
 		castSpell()
 
 
+func handle_camera_rotation() -> void:	
+	rotate_y(mouse_motion.x)
+	camera.rotate_x(mouse_motion.y)
+	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90, 90)
+	mouse_motion = Vector2.ZERO
+
 func castSpell() -> void:
 	var cast_direction: Vector3 = global_position
-	spell.cast(cast_direction)
+	var casted_spell = spell.instantiate()
+	add_child(casted_spell)
+	print("got instance")
+	var direction = Vector3(cast_direction.x, cast_direction.y + 1, cast_direction.z -1)
+	casted_spell.cast(direction)

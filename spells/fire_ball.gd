@@ -15,4 +15,4 @@ func _process(delta):
 
 func cast(direction: Vector3):
 	print("got direction: ", direction)
-	pass
+	global_position = direction
