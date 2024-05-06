@@ -7,6 +7,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_fhm2c"]
 
 [node name="FireBall" type="Node3D"]
+top_level = true
 script = ExtResource("1_0ojcf")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
@@ -17,3 +18,5 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_fhm2c")
+
+[node name="Timer" type="Timer" parent="."]
