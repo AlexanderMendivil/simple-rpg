@@ -37,7 +37,7 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("cast"):
-		castSpell()
+		cast_spell()
 
 
 func handle_camera_rotation() -> void:	
@@ -46,10 +46,9 @@ func handle_camera_rotation() -> void:
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90, 90)
 	mouse_motion = Vector2.ZERO
 
-func castSpell() -> void:
+func cast_spell() -> void:
 	var cast_direction: Vector3 = global_position
 	var casted_spell = spell.instantiate()
-	add_child(casted_spell)
-	print("got instance")
-	var direction = Vector3(cast_direction.x, cast_direction.y + 1, cast_direction.z -1)
+	add_child(casted_spell)	
+	var direction = Vector3(cast_direction.y + 1, cast_direction.x, cast_direction.z - 1)
 	casted_spell.cast(direction)

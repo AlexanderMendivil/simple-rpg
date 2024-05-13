@@ -25,9 +25,11 @@ shadow_enabled = true
 environment = SubResource("Environment_kkunj")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.984825, -0.000536799)
 use_collision = true
 size = Vector3(100, 1, 100)
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_jwun4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0201503, 2.15895, 0.0182483)
+
+[editable path="CharacterBody3D"]
