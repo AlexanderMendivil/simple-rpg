@@ -47,8 +47,12 @@ func handle_camera_rotation() -> void:
 	mouse_motion = Vector2.ZERO
 
 func cast_spell() -> void:
+
 	var cast_direction: Vector3 = global_position
-	var casted_spell = spell.instantiate()
-	add_child(casted_spell)	
-	var direction = Vector3(cast_direction.y + 1, cast_direction.x, cast_direction.z - 1)
+	print(cast_direction)
+	var casted_spell: Node3D = spell.instantiate()	
+	casted_spell.global_position = Vector3(cast_direction.x, cast_direction.y, -(cast_direction.z + 0.5))
+	print(casted_spell.global_position)
+	add_child(casted_spell)
+	var direction = Vector3(cast_direction.x, cast_direction.y, -cast_direction.z)
 	casted_spell.cast(direction)
