@@ -20,4 +20,4 @@ shape = SubResource("CapsuleShape3D_1akxa")
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1, 2)
 
 [node name="ShotController" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317082, -0.990569)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.317082, -1.35877)
