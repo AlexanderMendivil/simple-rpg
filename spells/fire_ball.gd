@@ -1,20 +1,25 @@
-extends Node3D
+extends RigidBody3D
 class_name FireBall
 
-@export var force = 50
-# Called when the node enters the scene tree for the first time.
-func _ready():
+@export var force = 10
+@onready var timer = $Timer
+
+func _ready():	
+	top_level = true
+	timer.start()	
+
+func _process(_delta):
+	pass
+
+
+func cast(direction: Vector3) -> void:	
+	apply_impulse(Vector3(0, 10, -force), direction)	
+
+func _on_timer_timeout():		
+	queue_free()
+
+
+
+func _on_body_entered(body):
+	print("hereee")
 	pass # Replace with function body.
-
-
-func _physics_process(delta):
-	pass
-
-func _process(delta):
-	pass
-
-
-func cast(direction: Vector3):
-	var rigid_body = find_child('RigidBody3D')	
-	rigid_body.apply_impulse(Vector3(0, 10, -force), direction)
-
