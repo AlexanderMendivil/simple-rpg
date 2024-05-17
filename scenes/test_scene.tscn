@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3ost6pypyrjm"]
+[gd_scene load_steps=7 format=3 uid="uid://d3ost6pypyrjm"]
 
 [ext_resource type="PackedScene" uid="uid://d2w602jsqmfp1" path="res://player/player.tscn" id="1_jwun4"]
 
@@ -15,6 +15,10 @@ sky = SubResource("Sky_kikwi")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_apr21"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xdofi"]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -27,9 +31,20 @@ environment = SubResource("Environment_kkunj")
 [node name="CSGBox3D" type="CSGBox3D" parent="." groups=["GROUND"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.984825, -0.000536799)
 use_collision = true
+collision_layer = 3
+collision_mask = 3
 size = Vector3(100, 1, 100)
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("1_jwun4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0201503, 2.15895, 0.0182483)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0727944, 0.744342, -15.6523)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CylinderShape3D_apr21")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("CylinderMesh_xdofi")
 
 [editable path="CharacterBody3D"]

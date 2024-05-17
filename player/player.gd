@@ -6,7 +6,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @export var camera: Camera3D
 @export var fall_multiplier: float = 2.0
-@onready var shot_controller = $ShotController
+@onready var shot_controller = $Camera3D/ShotController
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -54,8 +54,8 @@ func handle_camera_rotation() -> void:
 	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90, 90)
 	mouse_motion = Vector2.ZERO
 
-func cast_spell() -> void:	
+func cast_spell() -> void:
 	var casted_spell: Node3D = spell.instantiate()
-	shot_controller.add_child(casted_spell)
-	var direction = Vector3(global_position.x, global_position.y, -global_position.z)
+	shot_controller.add_child(casted_spell)		
+	var direction: Vector3 = shot_controller.global_position
 	casted_spell.cast(direction)

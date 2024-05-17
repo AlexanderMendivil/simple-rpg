@@ -6,13 +6,14 @@ class_name FireBall
 
 func _ready():	
 	top_level = true
+	max_contacts_reported = 1	
 	timer.start()	
 
 func _process(_delta):
 	pass
 
 
-func cast(direction: Vector3) -> void:	
+func cast(direction: Vector3) -> void:		
 	apply_impulse(Vector3(0, 10, -force), direction)	
 
 func _on_timer_timeout():		
@@ -20,6 +21,5 @@ func _on_timer_timeout():
 
 
 
-func _on_body_entered(body):
-	print("hereee")
-	pass # Replace with function body.
+func _on_body_entered(_body: Node3D) -> void:
+	queue_free()
