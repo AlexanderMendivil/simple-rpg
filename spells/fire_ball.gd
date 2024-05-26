@@ -14,7 +14,7 @@ func _process(_delta):
 
 
 func cast(direction: Vector3) -> void:		
-	apply_impulse(Vector3(0, 10, -force), direction)	
+	apply_impulse(Vector3.FORWARD*force, direction)	
 
 func _on_timer_timeout():		
 	queue_free()
