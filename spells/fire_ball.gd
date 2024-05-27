@@ -2,6 +2,7 @@ extends RigidBody3D
 class_name FireBall
 
 @export var force = 10
+@export var increase = 10
 @onready var timer = $Timer
 
 func _ready():	
@@ -9,8 +10,9 @@ func _ready():
 	max_contacts_reported = 1	
 	timer.start()	
 
-func _process(_delta):
-	pass
+func _physics_process(delta):
+	scale = (scale*delta) * increase
+	increase +=1
 
 
 func cast(direction: Vector3) -> void:		
