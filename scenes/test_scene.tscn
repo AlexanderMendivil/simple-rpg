@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3ost6pypyrjm"]
+[gd_scene load_steps=8 format=3 uid="uid://d3ost6pypyrjm"]
 
 [ext_resource type="PackedScene" uid="uid://d2w602jsqmfp1" path="res://player/player.tscn" id="1_jwun4"]
 
@@ -18,6 +18,8 @@ glow_enabled = true
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_apr21"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xdofi"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rskj1"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -46,5 +48,8 @@ shape = SubResource("CylinderShape3D_apr21")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
 mesh = SubResource("CylinderMesh_xdofi")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_rskj1")
 
 [editable path="CharacterBody3D"]
